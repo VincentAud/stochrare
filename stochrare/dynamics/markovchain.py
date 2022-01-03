@@ -65,7 +65,7 @@ class MarkovChain:
             X[i] is q[j]
 
         """
-        N, Na, Nb = len(self.G), len(A), len(B)
+        N, Na, Nb = len(self.transition_matrix), len(A), len(B)
         Gt = np.zeros((N-Na-Nb+2, N-Na-Nb+2))
         Gt[0][0] = 1
         Gt[1][1] = 1
@@ -74,17 +74,17 @@ class MarkovChain:
         for i in range(N):
             if i not in A and i not in B:
                 ind[i] = p
-                Gt[p][0] = sum([self.G[i][k] for k in A])
-                Gt[p][1] = sum([self.G[i][k] for k in B])
+                Gt[p][0] = sum([self.transition_matrix[i][k] for k in A])
+                Gt[p][1] = sum([self.transition_matrix[i][k] for k in B])
                 p += 1
         for i in range(N):
             if i not in A and i not in B:
                 for j in range(N):
                     if j not in A and j not in B:
-                        Gt[ind[i]][ind[j]]=self.G[i][j]  
+                        Gt[ind[i]][ind[j]]=self.transition_matrix[i][j]  
         vp, VP = np.linalg.eig(Gt)
         u, v = VP[:, vp == 1].T
         coeff = np.dot(np.linalg.inv(np.array([[u[0], v[0]], [u[1], v[1]]])), np.array([[0],[1]]))
         alpha, beta = coeff[0], coeff[1]
-        self.ind = ind
-        self.q = alpha*u+beta*v
+        q = alpha*u+beta*v
+        return q, ind

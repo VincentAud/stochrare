@@ -14,7 +14,7 @@ is supposed to reproduce the dynamics of the process studied.
 
 import numpy as np
 from scipy.spatial import KDTree
-from markovchain import MarkovChain
+from ..dynamics.markovchain import MarkovChain
 
 
 class AnalogueMarkovChain(MarkovChain):

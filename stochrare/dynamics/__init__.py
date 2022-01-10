@@ -14,6 +14,7 @@ For now, only diffusion processes are available.
 
    diffusion
    diffusion1d
+   markovchain
 
 """
-from . import diffusion, diffusion1d
+from . import diffusion, diffusion1d, markovchain

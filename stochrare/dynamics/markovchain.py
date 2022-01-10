@@ -88,3 +88,5 @@ class MarkovChain:
         alpha, beta = coeff[0], coeff[1]
         q = alpha*u+beta*v
         return q, ind
+    
+        

@@ -18,6 +18,13 @@ from ..dynamics.markovchain import MarkovChain
 
 
 class AnalogueMarkovChain(MarkovChain):
+    """
+    This class heritates from the 'MarkovChain' class
+    To initialize an AnalogueMarkovChain object we use the method construct_analog_markov_chain
+    which takes the number of analogues K and a realization of a process X and construct
+    a transition matrix for the analogue Markov chain stocked in self.transition_matrix
+    The method simulate_trajectory generates trajectory of the analogue process we computed.
+    """
     
     def __init__(self, name, X, K):
         tree, G = self.construct_analog_markov_chain(X, K)
